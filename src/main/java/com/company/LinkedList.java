@@ -127,6 +127,35 @@ public class LinkedList {
         if (oldNode.nextNode != null) {
             oldNode.nextNode = oldNode.nextNode.nextNode;
         }
+    }
+
+    //Add a new node before old one by ID
+    public void addNodeBeforeNode(String nodeData, int nodeID, int oldNodeD) {
+        if (headNode == null) {
+            throw new IllegalArgumentException("List is Empty. Node with ID:" + oldNodeD + " doesn't found in the list");
+        }
+        Node oldNode = headNode;
+        Node newNode = new Node(nodeData, nodeID);
+
+        //If isn't the first node
+        if (oldNode.nodeID != oldNodeD) {
+            while (oldNode.nextNode != null) {
+                if (oldNode.nextNode.nodeID == oldNodeD) {
+                    break;
+                } else {
+                    oldNode = oldNode.nextNode;
+                }
+            }
+            if (oldNode.nextNode == null) {
+                throw new IllegalArgumentException("Node with ID:" + oldNodeD + " doesn't found in the list");
+            }
+            newNode.nextNode = oldNode.nextNode;
+            oldNode.nextNode = newNode;
+        } else {
+            newNode.nextNode = oldNode;
+            headNode = newNode;
+        }
+
 
     }
 }

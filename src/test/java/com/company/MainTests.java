@@ -175,4 +175,55 @@ public class MainTests {
         assertEquals("Two Nodes List", "{'First',1}", twoNodesList.printAllNodesInOneSting());
     }
 
+    @Test
+    public void testAddNodeBeforeOldOneRegularList() {
+        LinkedList normalList = new LinkedList();
+        normalList.addNodeToTheEnd("First", 1);
+        normalList.addNodeToTheEnd("Second", 2);
+        normalList.addNodeToTheEnd("Threed", 3);
+        normalList.addNodeToTheEnd("Forth", 4);
+
+        normalList.addNodeBeforeNode("NewNode", 100, 2);
+        assertEquals("Regular list", "{'First',1}{'NewNode',100}{'Second',2}{'Threed',3}{'Forth',4}", normalList.printAllNodesInOneSting());
+
+    }
+
+    @Test
+    public void testAddNodeBeforeOldOneBeforeHead() {
+        LinkedList normalList = new LinkedList();
+        normalList.addNodeToTheEnd("First", 1);
+        normalList.addNodeToTheEnd("Second", 2);
+
+        normalList.addNodeBeforeNode("NewNode", 100, 1);
+        assertEquals("Regular list", "{'NewNode',100}{'First',1}{'Second',2}", normalList.printAllNodesInOneSting());
+
+    }
+
+    @Test
+    public void testAddNodeBeforeOldOneBeforeEnd() {
+        LinkedList normalList = new LinkedList();
+        normalList.addNodeToTheEnd("First", 1);
+        normalList.addNodeToTheEnd("Second", 2);
+
+        normalList.addNodeBeforeNode("NewNode", 100, 2);
+        assertEquals("Regular list", "{'First',1}{'NewNode',100}{'Second',2}", normalList.printAllNodesInOneSting());
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAddNodeBeforeOldOneEmptyList() {
+        LinkedList emptyList = new LinkedList();
+        emptyList.addNodeBeforeNode("A", 2, 1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAddNodeBeforeOldOnePhantomList() {
+        LinkedList normalList = new LinkedList();
+        normalList.addNodeToTheEnd("First", 1);
+        normalList.addNodeToTheEnd("Second", 2);
+        normalList.addNodeToTheEnd("Threed", 3);
+        normalList.addNodeToTheEnd("Forth", 4);
+
+        normalList.addNodeBeforeNode("NewNode", 100, -1);
+    }
 }
