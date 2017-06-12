@@ -68,6 +68,26 @@ public class LinkedList {
         }
     }
 
+    public void deleteNodeFromTheEnd() {
+        //If the list is empty do nothing
+        if (headNode != null) {
+            // if the list has more than one node -> find the last and delete it
+            if (headNode.nextNode != null) {
+                Node lastNode = headNode;
+                while (lastNode.nextNode.nextNode != null) {
+                    lastNode = lastNode.nextNode;
+                }
+                lastNode.nextNode = null;
+            } else {
+                //else delete singular
+                headNode = null;
+            }
+
+        }
+
+
+    }
+
     //Return a string for all nodes just for test
     public String printAllNodesInOneSting() {
         StringBuilder allNodesString = new StringBuilder();

@@ -3,6 +3,7 @@ package com.company;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * Created by ows on 12.06.17.
@@ -61,15 +62,34 @@ public class MainTests {
 
     @Test
     public void testDeleteNodeFromTheEnd(){
-        LinkedList ll = new LinkedList();
-        ll.addNodeToTheEnd("First", 1);
-        ll.addNodeToTheEnd("Second", 2);
-        ll.addNodeToTheEnd("Threed", 3);
-        ll.addNodeToTheEnd("Forth", 4);
+        LinkedList normalList = new LinkedList();
+        normalList.addNodeToTheEnd("First", 1);
+        normalList.addNodeToTheEnd("Second", 2);
+        normalList.addNodeToTheEnd("Threed", 3);
+        normalList.addNodeToTheEnd("Forth", 4);
 
-        ll.deleteNodeFromTheEnd();
+        normalList.deleteNodeFromTheEnd();
 
-        assertEquals("{'First',1}{'Second',2}{'Threed',3}",ll.printAllNodesInOneSting());
+        assertEquals("Regular list", "{'First',1}{'Second',2}{'Threed',3}",normalList.printAllNodesInOneSting());
+
+        LinkedList emptyList = new LinkedList();
+        emptyList.deleteNodeFromTheEnd();
+
+        assertEquals("Empty List","", emptyList.printAllNodesInOneSting());
+
+        LinkedList oneNodeList = new LinkedList();
+        oneNodeList.addNodeToTheEnd("First", 1);
+        oneNodeList.deleteNodeFromTheEnd();
+
+        assertEquals("One Node List","", oneNodeList.printAllNodesInOneSting());
+
+        LinkedList twoNodesList = new LinkedList();
+        twoNodesList.addNodeToTheEnd("First", 1);
+        twoNodesList.addNodeToTheEnd("Second", 2);
+        twoNodesList.deleteNodeFromTheEnd();
+
+        assertEquals("Two Nodes List","{'First',1}", twoNodesList.printAllNodesInOneSting());
+
 
     }
 
