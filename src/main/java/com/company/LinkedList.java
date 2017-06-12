@@ -186,4 +186,16 @@ public class LinkedList {
             }
         }
     }
+
+    //Count
+    public int count() {
+        Node node = headNode;
+        int size = 0;
+        while (node != null) {
+            size++;
+            node = node.nextNode;
+        }
+        return size;
+    }
+
 }

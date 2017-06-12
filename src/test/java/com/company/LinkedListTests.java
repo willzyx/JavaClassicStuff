@@ -276,4 +276,19 @@ public class LinkedListTests {
         normalList.deleteNodeBeforeNode(4);
         assertEquals("Regular list", "{'First',1}{'Forth',4}", normalList.printAllNodesInOneSting());
     }
+
+    @Test
+    public void testCountEmptyList() {
+        LinkedList emptyList = new LinkedList();
+        assertEquals("Empty list", 0, emptyList.count());
+    }
+
+    @Test
+    public void testCountRegularList() {
+        LinkedList normalList = new LinkedList();
+        normalList.addNodeToTheEnd("First", 1);
+        normalList.addNodeToTheEnd("Second", 2);
+        normalList.addNodeToTheEnd("Threed", 3);
+        assertEquals("Regular list", 3, normalList.count());
+    }
 }
