@@ -59,4 +59,18 @@ public class MainTests {
 
     }
 
+    @Test
+    public void testDeleteNodeFromTheEnd(){
+        LinkedList ll = new LinkedList();
+        ll.addNodeToTheEnd("First", 1);
+        ll.addNodeToTheEnd("Second", 2);
+        ll.addNodeToTheEnd("Threed", 3);
+        ll.addNodeToTheEnd("Forth", 4);
+
+        ll.deleteNodeFromTheEnd();
+
+        assertEquals("{'First',1}{'Second',2}{'Threed',3}",ll.printAllNodesInOneSting());
+
+    }
+
 }
