@@ -21,26 +21,46 @@ public class LinkedList {
             this.nextNode = null;
         }
 
-        @Override
-        public String toString() {
-            return "Node{" +
-                    "nodeData='" + nodeData + '\'' +
-                    ", nodeID=" + nodeID +
-                    '}';
+        public String toMinimalString() {
+            return "{" + "'" + nodeData + '\'' + ',' + nodeID + '}';
         }
     }
 
+    //Add a new Node to the Head
     public void addNodeToTheHead(String nodeData, int nodeID) {
         Node node = new Node(nodeData, nodeID);
         node.nextNode = headNode;
         headNode = node;
     }
 
-    public void printAllNodes() {
+    //Add a new node after old one by ID
+    public void addNodeAfterNode(String nodeData, int nodeID, int oldNodeD) {
+        Node oldNode = headNode;
+        while (oldNode != null) {
+            if (oldNode.nodeID == oldNodeD) {
+                break;
+            } else {
+                oldNode = oldNode.nextNode;
+            }
+        }
+        if (oldNode == null) {
+            throw new IllegalArgumentException("Node with ID:"+oldNodeD+" doesn't found in the list");
+        }
+
+        Node newNode = new Node(nodeData, nodeID);
+        newNode.nextNode = oldNode.nextNode;
+        oldNode.nextNode = newNode;
+    }
+
+    //Return a string for all nodes just for test
+    public String printAllNodesInOneSting() {
+        StringBuilder allNodesString = new StringBuilder();
         Node n = headNode;
         while (n != null) {
-            System.out.print(n.toString()+" ");
+            allNodesString.append(n.toMinimalString());
             n = n.nextNode;
         }
+        return allNodesString.toString();
     }
+
 }
