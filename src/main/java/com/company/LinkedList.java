@@ -44,12 +44,28 @@ public class LinkedList {
             }
         }
         if (oldNode == null) {
-            throw new IllegalArgumentException("Node with ID:"+oldNodeD+" doesn't found in the list");
+            throw new IllegalArgumentException("Node with ID:" + oldNodeD + " doesn't found in the list");
         }
 
         Node newNode = new Node(nodeData, nodeID);
         newNode.nextNode = oldNode.nextNode;
         oldNode.nextNode = newNode;
+    }
+
+    //Add a new node to the end
+    public void addNodeToTheEnd(String nodeData, int nodeID) {
+        Node newNode = new Node(nodeData, nodeID);
+
+        if (headNode == null) {
+            headNode = newNode;
+        } else {
+
+            Node lastNode = headNode;
+            while (lastNode.nextNode != null) {
+                lastNode = lastNode.nextNode;
+            }
+            lastNode.nextNode = newNode;
+        }
     }
 
     //Return a string for all nodes just for test
