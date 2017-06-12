@@ -155,7 +155,35 @@ public class LinkedList {
             newNode.nextNode = oldNode;
             headNode = newNode;
         }
+    }
 
 
+    //Delete a node before old one by ID
+    public void deleteNodeBeforeNode(int oldNodeD) {
+        if (headNode == null) {
+            throw new IllegalArgumentException("List is Empty. Node with ID:" + oldNodeD + " doesn't found in the list");
+        }
+        Node oldNode = headNode;
+        //If isn't the first node otherwise do nothing
+        if (oldNode.nodeID != oldNodeD) {
+            //We need to remember previous node
+            Node prevNode = null;
+            while (oldNode.nextNode != null) {
+                if (oldNode.nextNode.nodeID == oldNodeD) {
+                    break;
+                } else {
+                    prevNode = oldNode;
+                    oldNode = oldNode.nextNode;
+                }
+            }
+            if (oldNode.nextNode == null) {
+                throw new IllegalArgumentException("Node with ID:" + oldNodeD + " doesn't found in the list");
+            }
+            if (prevNode == null) {
+                headNode = oldNode.nextNode;
+            } else {
+                prevNode.nextNode = oldNode.nextNode;
+            }
+        }
     }
 }
