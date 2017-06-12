@@ -93,4 +93,34 @@ public class MainTests {
 
     }
 
+    public void testDeleteNodeFromTheHead(){
+        LinkedList normalList = new LinkedList();
+        normalList.addNodeToTheEnd("First", 1);
+        normalList.addNodeToTheEnd("Second", 2);
+        normalList.addNodeToTheEnd("Threed", 3);
+        normalList.addNodeToTheEnd("Forth", 4);
+
+        normalList.deleteNodeFromTheHead();
+
+        assertEquals("Regular list", "{'Second',2}{'Threed',3}{'Forth',4}",normalList.printAllNodesInOneSting());
+
+        LinkedList emptyList = new LinkedList();
+        emptyList.deleteNodeFromTheHead();
+
+        assertEquals("Empty List","", emptyList.printAllNodesInOneSting());
+
+        LinkedList oneNodeList = new LinkedList();
+        oneNodeList.addNodeToTheEnd("First", 1);
+        oneNodeList.deleteNodeFromTheHead();
+
+        assertEquals("One Node List","", oneNodeList.printAllNodesInOneSting());
+
+        LinkedList twoNodesList = new LinkedList();
+        twoNodesList.addNodeToTheEnd("First", 1);
+        twoNodesList.addNodeToTheEnd("Second", 2);
+        twoNodesList.deleteNodeFromTheHead();
+
+        assertEquals("Two Nodes List","{'Second',2}", twoNodesList.printAllNodesInOneSting());
+    }
+
 }

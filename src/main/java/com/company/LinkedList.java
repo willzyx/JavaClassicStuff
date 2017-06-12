@@ -82,10 +82,20 @@ public class LinkedList {
                 //else delete singular
                 headNode = null;
             }
-
         }
+    }
 
-
+    public void deleteNodeFromTheHead() {
+        //If the list is empty do nothing
+        if (headNode != null) {
+            // if the list has more than one node -> delete first node
+            if (headNode.nextNode != null) {
+                headNode = headNode.nextNode;
+            } else {
+                //else delete singular
+                headNode = null;
+            }
+        }
     }
 
     //Return a string for all nodes just for test
