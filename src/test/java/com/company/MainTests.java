@@ -93,6 +93,7 @@ public class MainTests {
 
     }
 
+    @Test
     public void testDeleteNodeFromTheHead(){
         LinkedList normalList = new LinkedList();
         normalList.addNodeToTheEnd("First", 1);
@@ -121,6 +122,46 @@ public class MainTests {
         twoNodesList.deleteNodeFromTheHead();
 
         assertEquals("Two Nodes List","{'Second',2}", twoNodesList.printAllNodesInOneSting());
+    }
+
+    @Test
+    public void testDeleteNodeAfterOldOneRegularList() {
+        LinkedList normalList = new LinkedList();
+        normalList.addNodeToTheEnd("First", 1);
+        normalList.addNodeToTheEnd("Second", 2);
+        normalList.addNodeToTheEnd("Threed", 3);
+        normalList.addNodeToTheEnd("Forth", 4);
+
+        normalList.deleteNodeAfterNode(2);
+
+        assertEquals("Regular list", "{'First',1}{'Second',2}{'Forth',4}", normalList.printAllNodesInOneSting());
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void testDeleteNodeAfterOldOneEmptyList() {
+        LinkedList emptyList = new LinkedList();
+        emptyList.deleteNodeAfterNode(1);
+
+        assertEquals("Empty List", "", emptyList.printAllNodesInOneSting());
+    }
+
+    @Test
+    public void testDeleteNodeAfterOldOneOneNodeList() {
+        LinkedList oneNodeList = new LinkedList();
+        oneNodeList.addNodeToTheEnd("First", 1);
+        oneNodeList.deleteNodeAfterNode(1);
+
+        assertEquals("One Node List", "{'First',1}", oneNodeList.printAllNodesInOneSting());
+    }
+
+    @Test
+    public void testDeleteNodeAfterOldOneTwoNodesList() {
+        LinkedList twoNodesList = new LinkedList();
+        twoNodesList.addNodeToTheEnd("First", 1);
+        twoNodesList.addNodeToTheEnd("Second", 2);
+        twoNodesList.deleteNodeAfterNode(1);
+
+        assertEquals("Two Nodes List","{'First',1}", twoNodesList.printAllNodesInOneSting());
     }
 
 }

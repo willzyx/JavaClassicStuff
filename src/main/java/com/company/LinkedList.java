@@ -109,4 +109,24 @@ public class LinkedList {
         return allNodesString.toString();
     }
 
+    //Delete a node after old one by ID
+    public void deleteNodeAfterNode(int oldNodeD) {
+        Node oldNode = headNode;
+        while (oldNode != null) {
+            if (oldNode.nodeID == oldNodeD) {
+                break;
+            } else {
+                oldNode = oldNode.nextNode;
+            }
+        }
+        if (oldNode == null) {
+            throw new IllegalArgumentException("Node with ID:" + oldNodeD + " doesn't found in the list");
+        }
+
+        //If it isn't the last node
+        if (oldNode.nextNode != null) {
+            oldNode.nextNode = oldNode.nextNode.nextNode;
+        }
+
+    }
 }
