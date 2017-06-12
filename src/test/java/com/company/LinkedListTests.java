@@ -8,7 +8,7 @@ import static org.junit.Assert.assertNull;
 /**
  * Created by ows on 12.06.17.
  */
-public class MainTests {
+public class LinkedListTests {
 
     @Test
     public void testAddNodeToTheHead() {

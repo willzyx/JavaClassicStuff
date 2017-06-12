@@ -1,6 +1,7 @@
 # JavaClassicStuff
 
-Try to sharp on java's skills on classic data structures and algorithms.
+I'm just trying to sharp on java's skills on classic data structures and algorithms.
 
-It's ready:
-*One linked list
+## IMHO it's ready:
+
+* One linked list
