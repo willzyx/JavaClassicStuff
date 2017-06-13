@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Arrays;
+
 /**
  * an implementation of Binary Heap on Array
  * need to try rewrite with generics
@@ -31,12 +33,27 @@ public class BinaryHeap {
 
     public BinaryHeap(int arraySize) {
         anArray = new Node[arraySize];
-        size = 0;
     }
 
     public BinaryHeap() {
         this(DEFAULT_CAPACITY);
     }
 
+    public void add(Node n) {
+        if (size >= anArray.length) {
+            growAnArrayUp();
+        }
+
+        anArray[size] = n;
+        size++;
+
+        //goUp();
+
+
+    }
+
+    private void growAnArrayUp() {
+        anArray = Arrays.copyOf(anArray, anArray.length * 2);
+    }
 
 }
