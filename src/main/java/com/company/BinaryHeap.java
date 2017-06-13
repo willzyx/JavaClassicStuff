@@ -22,29 +22,32 @@ public class BinaryHeap {
             this.nodeID = nodeID;
         }
 
-        public String toMinimalString() {
+        @Override
+        public String toString(){
             return "{" + "'" + nodeData + '\'' + ',' + nodeID + '}';
         }
 
-        public int getNodeID() {
-            return nodeID;
-        }
     }
 
     public BinaryHeap(int arraySize) {
         anArray = new Node[arraySize];
     }
 
+    @Override
+    public String toString() {
+        return "{" + Arrays.toString(anArray) + "}";
+    }
+
     public BinaryHeap() {
         this(DEFAULT_CAPACITY);
     }
 
-    public void add(Node n) {
+    public void addNewNode(String nodeData, int nodeID) {
         if (size >= anArray.length) {
             growAnArrayUp();
         }
 
-        anArray[size] = n;
+        anArray[size] = new Node(nodeData, nodeID);
         size++;
 
         //goUp();
