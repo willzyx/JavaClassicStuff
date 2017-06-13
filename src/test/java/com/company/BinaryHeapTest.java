@@ -26,21 +26,34 @@ public class BinaryHeapTest {
     public void testAddNewNode(){
         BinaryHeap bh = new BinaryHeap(3);
 
-        bh.addNewNode("A",1);
         bh.addNewNode("B",2);
-        assertEquals("{[{'A',1}, {'B',2}, null]}",bh.toString());
+        bh.addNewNode("A",1);
+        assertEquals("{[{'B',2}, {'A',1}, null]}",bh.toString());
     }
 
     @Test
     public void testGrowing(){
         BinaryHeap bh = new BinaryHeap(3);
 
+        bh.addNewNode("D",4);
+        bh.addNewNode("C",3);
+        bh.addNewNode("B",2);
+        bh.addNewNode("A",1);
+
+        assertEquals("{[{'D',4}, {'C',3}, {'B',2}, {'A',1}, null, null]}",bh.toString());
+    }
+
+    @Test
+    public void testGoUp(){
+        BinaryHeap bh = new BinaryHeap(3);
+
         bh.addNewNode("A",1);
         bh.addNewNode("B",2);
-        bh.addNewNode("C",3);
         bh.addNewNode("D",4);
+        bh.addNewNode("C",3);
 
-        assertEquals("{[{'A',1}, {'B',2}, {'C',3}, {'D',4}, null, null]}",bh.toString());
+        assertEquals("{[{'D',4}, {'C',3}, {'B',2}, {'A',1}, null, null]}",bh.toString());
     }
+
 
 }

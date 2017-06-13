@@ -23,8 +23,12 @@ public class BinaryHeap {
         }
 
         @Override
-        public String toString(){
+        public String toString() {
             return "{" + "'" + nodeData + '\'' + ',' + nodeID + '}';
+        }
+
+        public int getNodeID() {
+            return nodeID;
         }
 
     }
@@ -50,9 +54,31 @@ public class BinaryHeap {
         anArray[size] = new Node(nodeData, nodeID);
         size++;
 
-        //goUp();
+        goUp();
 
 
+    }
+
+    private void goUp() {
+
+        int i = size - 1;
+        int parent = getParent(i);
+        while (i > 0 && anArray[i].getNodeID() > anArray[parent].getNodeID()) {
+            swapNodes(i, parent);
+            i = parent;
+            parent = getParent(i);
+        }
+
+    }
+
+    private void swapNodes(int i, int j) {
+        Node t = anArray[i];
+        anArray[i] = anArray[j];
+        anArray[j] = t;
+    }
+
+    private int getParent(int i) {
+        return (i - 1) / 2;
     }
 
     private void growAnArrayUp() {
