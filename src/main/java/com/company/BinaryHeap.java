@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class BinaryHeap {
     final static int DEFAULT_CAPACITY = 16;
     Node[] anArray;
-    int size;
+    int anArraySize;
 
     private class Node {
         String nodeData;
@@ -39,6 +39,7 @@ public class BinaryHeap {
 
     public BinaryHeap(int arraySize) {
         anArray = new Node[arraySize];
+        anArraySize = -1;
     }
 
     @Override
@@ -51,12 +52,13 @@ public class BinaryHeap {
     }
 
     public void addNewNode(String nodeData, int nodeID) {
-        if (size >= anArray.length) {
+        anArraySize++;
+
+        if (anArraySize >= anArray.length) {
             growAnArrayUp();
         }
 
-        anArray[size] = new Node(nodeData, nodeID);
-        size++;
+        anArray[anArraySize] = new Node(nodeData, nodeID);
 
         goUp();
 
@@ -65,9 +67,9 @@ public class BinaryHeap {
 
     private void goUp() {
 
-        int i = size - 1;
+        int i = anArraySize;
         int parent = getParent(i);
-        while (i > 0 && anArray[i].getNodeID() > anArray[parent].getNodeID()) {
+        while (i >= 0 && anArray[i].getNodeID() > anArray[parent].getNodeID()) {
             swapNodes(i, parent);
             i = parent;
             parent = getParent(i);
@@ -76,13 +78,13 @@ public class BinaryHeap {
     }
 
     public String getTopNode() {
-        if (size == 0) {
+        if (anArraySize < 0) {
             throw new IllegalStateException("Heap is empty");
         }
 
         Node n = anArray[0];
-        anArray[0] = anArray[size - 1];
-        size--;
+        anArray[0] = anArray[anArraySize];
+        anArraySize--;
 
         goDown();
         return n.getData();
@@ -91,8 +93,28 @@ public class BinaryHeap {
     }
 
     private void goDown() {
+        int i = 0;
+        int leftChild;
+        int rightChild;
+        int largerChild;
 
-        //TODO
+        while (i < anArraySize / 2) {
+            leftChild = 2 * i + 1;
+            rightChild = 2 * i + 2;
+            largerChild = i;
+
+            //If Right child Present
+            if (rightChild < anArraySize - 1 && anArray[leftChild].getNodeID() > anArray[largerChild].getNodeID())
+            {
+                largerChild = leftChild;
+            }
+            //If right child Present
+            if (rightChild < anArraySize && anArray[rightChild].getNodeID() > anArray[largerChild].getNodeID())
+            {
+                largerChild = leftChild;
+            }
+
+        }
     }
 
     private void swapNodes(int i, int j) {
