@@ -33,7 +33,7 @@ public class BinaryHeap {
         }
 
         public String getData() {
-            return data;
+            return nodeData;
         }
     }
 
@@ -84,6 +84,7 @@ public class BinaryHeap {
 
         Node n = anArray[0];
         anArray[0] = anArray[anArraySize];
+        anArray[anArraySize] = null;
         anArraySize--;
 
         goDown();
@@ -98,21 +99,26 @@ public class BinaryHeap {
         int rightChild;
         int largerChild;
 
-        while (i < anArraySize / 2) {
+        while (i < (anArraySize + 1) / 2) {
             leftChild = 2 * i + 1;
             rightChild = 2 * i + 2;
-            largerChild = i;
 
-            //If Right child Present
-            if (rightChild < anArraySize - 1 && anArray[leftChild].getNodeID() > anArray[largerChild].getNodeID())
-            {
+            //If Right child presents Left presents also
+            if (rightChild <= anArraySize && anArray[rightChild].getNodeID() > anArray[leftChild].getNodeID()) {
+                largerChild = rightChild;
+            } else {
                 largerChild = leftChild;
             }
-            //If right child Present
-            if (rightChild < anArraySize && anArray[rightChild].getNodeID() > anArray[largerChild].getNodeID())
-            {
-                largerChild = leftChild;
+
+            //If the largest in the top -> stop
+            if (anArray[i].getNodeID() >= anArray[largerChild].getNodeID()) {
+                break;
             }
+
+            swapNodes(i, largerChild);
+
+            //go to largest sub-tree
+            i = largerChild;
 
         }
     }
