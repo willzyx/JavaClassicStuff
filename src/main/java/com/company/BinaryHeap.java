@@ -16,6 +16,7 @@ public class BinaryHeap {
     private class Node {
         String nodeData;
         int nodeID;
+        private String data;
 
         Node(String nodeData, int nodeID) {
             this.nodeData = nodeData;
@@ -31,6 +32,9 @@ public class BinaryHeap {
             return nodeID;
         }
 
+        public String getData() {
+            return data;
+        }
     }
 
     public BinaryHeap(int arraySize) {
@@ -69,6 +73,26 @@ public class BinaryHeap {
             parent = getParent(i);
         }
 
+    }
+
+    public String getTopNode() {
+        if (size == 0) {
+            throw new IllegalStateException("Heap is empty");
+        }
+
+        Node n = anArray[0];
+        anArray[0] = anArray[size - 1];
+        size--;
+
+        goDown();
+        return n.getData();
+
+
+    }
+
+    private void goDown() {
+
+        //TODO
     }
 
     private void swapNodes(int i, int j) {
