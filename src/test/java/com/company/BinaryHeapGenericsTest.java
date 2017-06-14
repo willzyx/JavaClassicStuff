@@ -5,26 +5,40 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by ows on 13.06.17.
+ * Created by pss on 14.06.17.
  */
 public class BinaryHeapGenericsTest {
 
     @Test
-    public void testDefaultConstructor() {
+    public void testDefaultConstructorInteger() {
         BinaryHeapGenerics<Integer> bh = new BinaryHeapGenerics<>();
 
         assertEquals("{[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]}", bh.toString());
     }
 
     @Test
-    public void testSizeConstructor() {
+    public void testDefaultConstructorString() {
+        BinaryHeapGenerics<String> bh = new BinaryHeapGenerics<>();
+
+        assertEquals("{[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]}", bh.toString());
+    }
+
+    @Test
+    public void testSizeConstructorInteger() {
         BinaryHeapGenerics<Integer> bh = new BinaryHeapGenerics<>(3);
 
         assertEquals("{[null, null, null]}", bh.toString());
     }
 
     @Test
-    public void testAddNewNode() {
+    public void testSizeConstructorString() {
+        BinaryHeapGenerics<String> bh = new BinaryHeapGenerics<>(3);
+
+        assertEquals("{[null, null, null]}", bh.toString());
+    }
+
+    @Test
+    public void testAddNewNodeInteger() {
         BinaryHeapGenerics<Integer> bh = new BinaryHeapGenerics<>(3);
 
         bh.addNewNode(2);
@@ -33,7 +47,16 @@ public class BinaryHeapGenericsTest {
     }
 
     @Test
-    public void testGrowing() {
+    public void testAddNewNodeString() {
+        BinaryHeapGenerics<String> bh = new BinaryHeapGenerics<>(3);
+
+        bh.addNewNode("B");
+        bh.addNewNode("A");
+        assertEquals("{[B, A, null]}", bh.toString());
+    }
+
+    @Test
+    public void testGrowingInteger() {
         BinaryHeapGenerics<Integer> bh = new BinaryHeapGenerics<>(3);
 
         bh.addNewNode(4);
@@ -45,7 +68,19 @@ public class BinaryHeapGenericsTest {
     }
 
     @Test
-    public void testGoUp() {
+    public void testGrowingString() {
+        BinaryHeapGenerics<String> bh = new BinaryHeapGenerics<>(3);
+
+        bh.addNewNode("D");
+        bh.addNewNode("C");
+        bh.addNewNode("B");
+        bh.addNewNode("A");
+
+        assertEquals("{[D, C, B, A, null, null]}", bh.toString());
+    }
+
+    @Test
+    public void testGoUpInteger() {
         BinaryHeapGenerics<Integer> bh = new BinaryHeapGenerics<>(3);
 
         bh.addNewNode(1);
@@ -56,9 +91,21 @@ public class BinaryHeapGenericsTest {
         assertEquals("{[4, 3, 2, 1, null, null]}", bh.toString());
     }
 
+    @Test
+    public void testGoUpString() {
+        BinaryHeapGenerics<String> bh = new BinaryHeapGenerics<>(3);
+
+        bh.addNewNode("A");
+        bh.addNewNode("B");
+        bh.addNewNode("C");
+        bh.addNewNode("D");
+
+        assertEquals("{[D, C, B, A, null, null]}", bh.toString());
+    }
+
 
     @Test
-    public void testGoDown() {
+    public void testGoDownInteger() {
         BinaryHeapGenerics<Integer> bh = new BinaryHeapGenerics<>(3);
 
         bh.addNewNode(17);
@@ -76,6 +123,27 @@ public class BinaryHeapGenericsTest {
         assertEquals(Integer.valueOf(8), bh.getTopNode());
         assertEquals(Integer.valueOf(2), bh.getTopNode());
         assertEquals(Integer.valueOf(1), bh.getTopNode());
+    }
+
+    @Test
+    public void testGoDownString() {
+        BinaryHeapGenerics<String> bh = new BinaryHeapGenerics<>(3);
+
+        bh.addNewNode("R");
+        bh.addNewNode("G");
+        bh.addNewNode("C");
+        bh.addNewNode("Z");
+        bh.addNewNode("A");
+        bh.addNewNode("T");
+        bh.addNewNode("W");
+
+        assertEquals(String.valueOf('Z'), bh.getTopNode());
+        assertEquals(String.valueOf('W'), bh.getTopNode());
+        assertEquals(String.valueOf('T'), bh.getTopNode());
+        assertEquals(String.valueOf('R'), bh.getTopNode());
+        assertEquals(String.valueOf('G'), bh.getTopNode());
+        assertEquals(String.valueOf('C'), bh.getTopNode());
+        assertEquals(String.valueOf('A'), bh.getTopNode());
     }
 
 
