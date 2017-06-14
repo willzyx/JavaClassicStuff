@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by ows on 13.06.17.
+ * Created by pss on 13.06.17.
  */
 public class BinaryHeapTest {
 
