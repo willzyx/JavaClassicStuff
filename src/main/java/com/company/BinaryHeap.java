@@ -9,14 +9,14 @@ import java.util.Arrays;
  * Created by pss on 13.06.17.
  */
 public class BinaryHeap {
-    final static int DEFAULT_CAPACITY = 16;
-    Node[] anArray;
-    int anArraySize;
+    private final static int DEFAULT_CAPACITY = 16;
+    private Node[] anArray;
+    private int anArraySize; // articles?) really?)
 
-    private class Node {
+    private static class Node {
         String nodeData;
-        int nodeID;
-        private String data;
+        int nodeID; // weight? maybe
+        String data;
 
         Node(String nodeData, int nodeID) {
             this.nodeData = nodeData;
@@ -39,7 +39,7 @@ public class BinaryHeap {
 
     public BinaryHeap(int arraySize) {
         anArray = new Node[arraySize];
-        anArraySize = -1;
+        anArraySize = 0; // размер == -1. как то не логично
     }
 
     @Override
@@ -58,7 +58,7 @@ public class BinaryHeap {
             growAnArrayUp();
         }
 
-        anArray[anArraySize] = new Node(nodeData, nodeID);
+        anArray[anArraySize - 1] = new Node(nodeData, nodeID);
 
         goUp();
 
@@ -67,8 +67,10 @@ public class BinaryHeap {
 
     private void goUp() {
 
-        int i = anArraySize;
+        int i = anArraySize - 1;
         int parent = getParent(i);
+        // дублирование кода
+        // ничего такого, если ты заиспользуешь break
         while (i >= 0 && anArray[i].getNodeID() > anArray[parent].getNodeID()) {
             swapNodes(i, parent);
             i = parent;
@@ -77,8 +79,8 @@ public class BinaryHeap {
 
     }
 
-    public String getTopNode() {
-        if (anArraySize < 0) {
+    public String getTopNode() { // pop, extractTop, not just get 
+        if (anArraySize == 0) {
             throw new IllegalStateException("Heap is empty");
         }
 
@@ -111,7 +113,7 @@ public class BinaryHeap {
             }
 
             //If the largest in the top -> stop
-            if (anArray[i].getNodeID() >= anArray[largerChild].getNodeID()) {
+            if (anArray[i].getNodeID() >= anArray[largerChild].getNodeID()) { // классическое дерево с минимумом в корне.. к слову.. если я все правильно помню
                 break;
             }
 
@@ -129,7 +131,7 @@ public class BinaryHeap {
         anArray[j] = t;
     }
 
-    private int getParent(int i) {
+    private int getParent(int i) { // inline
         return (i - 1) / 2;
     }
 
