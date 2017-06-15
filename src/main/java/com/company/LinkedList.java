@@ -9,7 +9,7 @@ public class LinkedList {
 
     private Node headNode;
 
-    private class Node {
+    private static class Node {
         String nodeData;
         int nodeID;
 
@@ -27,7 +27,7 @@ public class LinkedList {
     }
 
     //Add a new Node to the Head
-    public void addNodeToTheHead(String nodeData, int nodeID) {
+    public void addNodeToTheHead(String nodeData, int nodeID) { // articles.. articles.. And long names are usually not that good
         Node node = new Node(nodeData, nodeID);
         node.nextNode = headNode;
         headNode = node;
@@ -188,7 +188,7 @@ public class LinkedList {
     }
 
     //Count
-    public int count() {
+    public int count() {  // usually it is called "size"
         Node node = headNode;
         int size = 0;
         while (node != null) {
